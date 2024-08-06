@@ -10,6 +10,8 @@ public class RangedEnemyController : MonoBehaviour
     public float startDelay;
     public GameObject projectiles;
     private float spawnTimer = 0;
+    public float health = 100;
+    public GameObject key;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,15 @@ public class RangedEnemyController : MonoBehaviour
                 StartCoroutine(SpawnProjectile());
                 Instantiate(projectiles, transform.position, transform.rotation);
             }
+        }
+        if (health <= 0){
+            var aliveEnemies = FindObjectsOfType<EnemyController>();
+            var aliveRangedEnemies = FindObjectsOfType<RangedEnemyController>();
+            int totalEnemies = aliveEnemies.Length + aliveRangedEnemies.Length;
+            if (totalEnemies == 1){
+                Instantiate(key, transform.position, transform.rotation);
+            }
+            Destroy(gameObject);
         }
     }
 }
