@@ -10,10 +10,15 @@ public class EnemyController : MonoBehaviour
     public float bounceback;
     public bool bouncing = false;
     public GameObject key;
+    private Animator anim;
+    private Vector3 lookDirection;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindObjectOfType<PlayerController>().gameObject;
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     IEnumerator bounceTimer(float seconds){
@@ -38,14 +43,16 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         if (Vector3.Distance(player.transform.position, transform.position) < 5){
-            Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+            lookDirection = (player.transform.position - transform.position).normalized;
             if (!bouncing){
-                transform.Translate(lookDirection * speed * Time.deltaTime);
+                rb.velocity = (lookDirection * speed);
             } else if (bouncing){
-                transform.Translate(-lookDirection * speed * bounceback * Time.deltaTime)
+                rb.velocity = (-lookDirection * speed);
 ;            }
             
-        } 
+        } else {
+            rb.velocity = new Vector2(0,0);
+        }
 
         if (health <= 0){
             var aliveEnemies = FindObjectsOfType<EnemyController>();
@@ -56,6 +63,8 @@ public class EnemyController : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        anim.SetFloat("xSpeed", lookDirection.x * speed);
+        anim.SetFloat("ySpeed", lookDirection.y * speed);
         
     }
 }

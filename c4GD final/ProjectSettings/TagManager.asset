@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - Spike
   - Sword
+  - Gates
   layers:
   - Default
   - TransparentFX

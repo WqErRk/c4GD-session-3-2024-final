@@ -13,10 +13,15 @@ public class PlayerController : MonoBehaviour
     public float health = 100f;
     public bool dashCooling = false;
     public GameObject Sword;
+    public bool swordActive = false;
+    public GameObject rotationPoint;
+    private Rigidbody2D rb;
+    public GameObject Gates;
+    public GameObject GateTriggers;
+    public GameObject SpawnTriggers;
 
     public Camera mainCam;
-    //debug variables
-    public bool swordActive;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +29,8 @@ public class PlayerController : MonoBehaviour
         Sword.SetActive(false);
         speed = normalSpeed;
         swordActive = false;
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
     //Invicnibility timer for dash
     IEnumerator dashTimer(){
@@ -31,8 +38,11 @@ public class PlayerController : MonoBehaviour
         speed = dashSpeed;
         yield return new WaitForSeconds(0.25f);
         speed = normalSpeed;
+        yield return new WaitForSeconds(1f);
         isInvincible = false;
-        StartCoroutine(dashCooldown());    
+        StartCoroutine(dashCooldown());
+        
+            
     }
 
     IEnumerator dashCooldown(){
@@ -51,24 +61,29 @@ public class PlayerController : MonoBehaviour
 
     //handle spike and projectile collision
     void OnTriggerEnter2D(Collider2D other){
-        if((other.gameObject.CompareTag("Spike") | other.gameObject.CompareTag("Projectile")) && !isInvincible){
+        if(other.gameObject.CompareTag("Projectile") && !isInvincible){
             health -= 15;
             }
         }
 
     IEnumerator swordTimer(){
+        swordActive = true;
         Sword.SetActive(true);
         yield return new WaitForSeconds(FindObjectOfType<SwordScript>().weapontimer);
         Sword.SetActive(false);
+        swordActive = false;
     }
         
 
     // Update is called once per frame
     void Update(){
         horizontalInput = Input.GetAxisRaw("Horizontal");
-        transform.position += (Vector3.right * horizontalInput * Time.deltaTime * speed);
         verticalInput = Input.GetAxisRaw("Vertical");
-        transform.position += (Vector3.up * verticalInput * Time.deltaTime * speed);
+        //Vector3 horizontalVelocity = new Vector3(Vector3.right * horizontalInput * speed, 0);
+        //Vector3 verticalVelocity = new Vector3(Vector3.up * verticalInput * speed, 0);
+        rb.velocity = new Vector2(horizontalInput * speed, verticalInput * speed);
+        
+        
         
         Vector3 playerpos = transform.position;
         Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition); 
@@ -78,13 +93,17 @@ public class PlayerController : MonoBehaviour
         
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         Vector3 addSpace = new Vector3(playerpos.x, playerpos.y + 1, playerpos.z + 1);
-        transform.rotation = Quaternion.Euler(0, 0, rot);
+        rotationPoint.transform.rotation = Quaternion.Euler(0, 0, rot);
 
         if (Input.GetKeyDown(KeyCode.Space) && !dashCooling){StartCoroutine(dashTimer());}
-        if (Input.GetKeyDown(KeyCode.F) && !swordActive){ 
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !swordActive){ 
             StartCoroutine(swordTimer());
         }
-            
+        anim.SetFloat("xSpeed", Mathf.Abs(horizontalInput * speed));
+        anim.SetFloat("ySpeed", verticalInput * speed);
+        anim.SetBool("swordActive", swordActive);
+        anim.SetBool("isInvincible", isInvincible);
+        mainCam.gameObject.transform.position = new Vector3(transform.position.x, mainCam.gameObject.transform.position.y, mainCam.gameObject.transform.position.z);
     }
 }
 
