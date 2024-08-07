@@ -8,12 +8,13 @@ public class KeyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Gates = GameObject.FindWithTag("Gates");
     }
     
-    void OnCollisionEnter2D(Collision2D coll){
-        if(coll.gameObject.CompareTag("Player")){
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.CompareTag("Player")){
             Gates.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
