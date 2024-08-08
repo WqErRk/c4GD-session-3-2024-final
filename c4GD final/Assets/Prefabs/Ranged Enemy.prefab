@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7154599643859064205}
   - component: {fileID: 7154599643859064204}
   - component: {fileID: 7154599643859064203}
+  - component: {fileID: -3250022190250421413}
   m_Layer: 0
   m_Name: Ranged Enemy
   m_TagString: Enemy
@@ -75,9 +76,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5, g: 0, b: 0, a: 1}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: c41bd013a3af0d64ba5d8113f9ebc7e3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,6 +104,8 @@ MonoBehaviour:
   fireRate: 2
   startDelay: 2
   projectiles: {fileID: 3219174158214203921, guid: 71f0a930ef6fc114a902994a2ad0d6eb, type: 3}
+  health: 100
+  key: {fileID: 0}
 --- !u!61 &7154599643859064204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150,3 +153,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &-3250022190250421413
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7154599643859064202}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fba3bff28c816ce4c89b5adcb3471747, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

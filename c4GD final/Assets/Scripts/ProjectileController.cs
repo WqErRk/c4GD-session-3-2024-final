@@ -10,6 +10,10 @@ public class ProjectileController : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         player = GameObject.FindObjectOfType<PlayerController>().gameObject;
+        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        Vector3 rotation = player.transform.position - transform.position;
+        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rot);
         
     }
 
@@ -21,7 +25,6 @@ public class ProjectileController : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
-        transform.Translate(lookDirection * speed * Time.deltaTime);
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 }

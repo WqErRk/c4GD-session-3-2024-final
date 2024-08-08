@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Gates;
     public GameObject GateTriggers;
     public GameObject SpawnTriggers;
+    public GameObject gameOverScreen;
 
     public Camera mainCam;
     private Animator anim;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
         swordActive = false;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        gameOverScreen.SetActive(false);
     }
     //Invicnibility timer for dash
     IEnumerator dashTimer(){
@@ -80,33 +82,34 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-        //Vector3 horizontalVelocity = new Vector3(Vector3.right * horizontalInput * speed, 0);
-        //Vector3 verticalVelocity = new Vector3(Vector3.up * verticalInput * speed, 0);
-        rb.velocity = new Vector2(horizontalInput * speed, verticalInput * speed);
+        if (health > 0){
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+            rb.velocity = new Vector2(horizontalInput * speed, verticalInput * speed);
         
-        
-        
-        Vector3 playerpos = transform.position;
-        Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition); 
+            Vector3 playerpos = transform.position;
+            Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition); 
 
-        Vector3 direction = mousePos - playerpos;
-        Vector3 rotation = playerpos - mousePos;
+            Vector3 direction = mousePos - playerpos;
+            Vector3 rotation = playerpos - mousePos;
         
-        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        Vector3 addSpace = new Vector3(playerpos.x, playerpos.y + 1, playerpos.z + 1);
-        rotationPoint.transform.rotation = Quaternion.Euler(0, 0, rot);
+            float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+            Vector3 addSpace = new Vector3(playerpos.x, playerpos.y + 1, playerpos.z + 1);
+            rotationPoint.transform.rotation = Quaternion.Euler(0, 0, rot);
 
-        if (Input.GetKeyDown(KeyCode.Space) && !dashCooling){StartCoroutine(dashTimer());}
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !swordActive){ 
-            StartCoroutine(swordTimer());
+            if (Input.GetKeyDown(KeyCode.Space) && !dashCooling){StartCoroutine(dashTimer());}
+            if (Input.GetKeyDown(KeyCode.Mouse0) && !swordActive){StartCoroutine(swordTimer());}
+        } else {
+            gameOverScreen.SetActive(true);
+            rb.velocity = Vector2.zero;
         }
+        
         anim.SetFloat("xSpeed", Mathf.Abs(horizontalInput * speed));
         anim.SetFloat("ySpeed", verticalInput * speed);
         anim.SetBool("swordActive", swordActive);
         anim.SetBool("isInvincible", isInvincible);
         mainCam.gameObject.transform.position = new Vector3(transform.position.x, mainCam.gameObject.transform.position.y, mainCam.gameObject.transform.position.z);
+        gameOverScreen.transform.position = new Vector3(transform.position.x, mainCam.gameObject.transform.position.y, gameOverScreen.transform.position.z);
     }
 }
 
