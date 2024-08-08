@@ -21,7 +21,7 @@ public class VFXManager : MonoBehaviour
     // How long the object should shake for. Set by outside function
     public float shakeDuration = 0f;
     // Amplitude of the shake. A larger value shakes the camera harder.
-    public float shakeAmount = 0.1f;
+    public float shakeAmount = 0f;
 
     [Header("Particles")] //Just storing the prefabs here for easy access
     public GameObject particleExplosion;
@@ -33,6 +33,10 @@ public class VFXManager : MonoBehaviour
     public float damageFlashDurationMax = 0.3f;
     private float damageFlashDurationTimer = 0;
     public Color damageFlashColor = Color.red;
+
+    void Awake() {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
