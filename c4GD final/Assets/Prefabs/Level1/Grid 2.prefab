@@ -41334,16 +41334,6 @@ Tilemap:
   m_GameObject: {fileID: 9005496414405564087}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: 0, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 2
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 8, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -41410,15 +41400,15 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: e84bf27dbc4d03d4e9654bc3ab19f2c3, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 5dd729b6754ff7a48813d2caaca314ec, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: f18d0ad6123b40544830e2d76021d964, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 3
     m_Data: {fileID: -1222115766, guid: bfa45739088a06849a7db392f7440af2, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 1134725730, guid: bfa45739088a06849a7db392f7440af2, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 1400036745, guid: 1a774ea93f94a234a93c300e70c531ac, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 2
     m_Data:
@@ -41456,26 +41446,26 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 1
+  - m_RefCount: 0
     m_Data:
-      e00: 1
+      e00: 1.60003e+15
       e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
+      e02: 2.0401127e+10
+      e03: 2.0401127e+10
+      e10: 6.96e-43
+      e11: 0
+      e12: 6.94e-43
+      e13: 6.94e-43
+      e20: 2.0712653e+10
+      e21: 1e-45
+      e22: -1.3482251e-28
+      e23: -3.727573e+19
+      e30: 4.5905e-41
       e31: 0
-      e32: 0
-      e33: 1
+      e32: 6.94e-43
+      e33: 6.96e-43
   m_TileColorArray:
-  - m_RefCount: 7
+  - m_RefCount: 6
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -41661,14 +41651,6 @@ CompositeCollider2D:
         Y: 10000000
       - X: 83750000
         Y: 10000000
-    - - X: 10000000
-        Y: 10000000
-      - X: 0
-        Y: 10000000
-      - X: 0
-        Y: 0
-      - X: 10000000
-        Y: 0
   m_CompositePaths:
     m_Paths:
     - - {x: 53.99997, y: 1}
@@ -41698,9 +41680,5 @@ CompositeCollider2D:
       - {x: 8.374989, y: 3}
       - {x: 8, y: 2.999971}
       - {x: 8.00003, y: 1}
-    - - {x: 0.99997073, y: 0}
-      - {x: 0.99997073, y: 1}
-      - {x: 0, y: 0.99997073}
-      - {x: 0.000029300001, y: 0}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005

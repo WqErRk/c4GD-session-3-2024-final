@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public GameObject GateTriggers;
     public GameObject SpawnTriggers;
     public GameObject gameOverScreen;
+    public GameObject vfxManager;
 
     public Camera mainCam;
     private Animator anim;
@@ -67,7 +68,9 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("Projectile") && !isInvincible){
             health -= 15;
-            }
+        } else if (other.gameObject.CompareTag("potion")){
+            health = 100;
+        }
         }
 
     IEnumerator swordTimer(){
@@ -99,6 +102,8 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && !dashCooling){StartCoroutine(dashTimer());}
             if (Input.GetKeyDown(KeyCode.Mouse0) && !swordActive){StartCoroutine(swordTimer());}
         } else {
+            VFXManager vfxscript = vfxManager.GetComponent<VFXManager>();
+            vfxscript.VFXOn = false;
             gameOverScreen.SetActive(true);
             rb.velocity = Vector2.zero;
         }

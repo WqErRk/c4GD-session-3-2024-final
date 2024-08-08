@@ -9,6 +9,7 @@ TagManager:
   - Spike
   - Sword
   - Gates
+  - potion
   layers:
   - Default
   - TransparentFX
