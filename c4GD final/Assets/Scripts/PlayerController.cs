@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour
 
     //handle enemy collision
     void OnCollisionEnter2D(Collision2D coll){
-        print(isInvincible);
         if(coll.gameObject.CompareTag("Enemy") && !isInvincible){
             health -= 15;
             Rigidbody2D enemyRigidbody = coll.gameObject.GetComponent<Rigidbody2D>();
@@ -109,7 +108,6 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("swordActive", swordActive);
         anim.SetBool("isInvincible", isInvincible);
         mainCam.gameObject.transform.position = new Vector3(transform.position.x, mainCam.gameObject.transform.position.y, mainCam.gameObject.transform.position.z);
-        gameOverScreen.transform.position = new Vector3(transform.position.x, mainCam.gameObject.transform.position.y, gameOverScreen.transform.position.z);
     }
 }
 

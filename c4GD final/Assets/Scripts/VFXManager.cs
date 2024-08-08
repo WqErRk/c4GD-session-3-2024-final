@@ -26,7 +26,7 @@ public class VFXManager : MonoBehaviour
     [Header("Particles")] //Just storing the prefabs here for easy access
     public GameObject particleExplosion;
 
-    [Header("Screen Effects")] //Post processing
+    [Header("Screen Effects")] //Post processing 
     public Volume volume; //A volume handles post processing effects in Unity
     ColorAdjustments CA; //stores color adjustment from profile
     //Damage Flash stuff
@@ -41,7 +41,7 @@ public class VFXManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        volume.gameObject.SetActive(VFXOn);
+        //volume.gameObject.SetActive(VFXOn);
         
         instance = this; //Setting the singleton
 
