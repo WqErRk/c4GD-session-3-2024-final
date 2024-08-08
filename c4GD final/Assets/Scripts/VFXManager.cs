@@ -41,11 +41,11 @@ public class VFXManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //volume.gameObject.SetActive(VFXOn);
+        //  volume.gameObject.SetActive(VFXOn);
         
         instance = this; //Setting the singleton
 
-        volume.profile.TryGet<ColorAdjustments>(out CA); //Function to get the color adjustment from the volume profile
+        //volume.profile.TryGet<ColorAdjustments>(out CA); //Function to get the color adjustment from the volume profile
     }
 
     //Function to shake the camera by duration and amount
