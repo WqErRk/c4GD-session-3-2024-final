@@ -53,12 +53,9 @@ public class PlayerController : MonoBehaviour
 
     //handle enemy collision
     void OnCollisionEnter2D(Collision2D coll){
-        print(isInvincible);
         if(coll.gameObject.CompareTag("Enemy") && !isInvincible){
             health -= 15;
             Rigidbody2D enemyRigidbody = coll.gameObject.GetComponent<Rigidbody2D>();
-            print("coliided");
-            VFXManager.instance.ShakeCam(0.3f, 0.7f);
         }
     }
 
