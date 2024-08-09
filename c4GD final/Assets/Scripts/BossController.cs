@@ -24,6 +24,7 @@ public class BossController : MonoBehaviour
         player = GameObject.FindObjectOfType<PlayerController>().gameObject;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindObjectOfType<PlayerController>().gameObject;
     }
 
     IEnumerator bounceTimer(float seconds){
@@ -58,9 +59,7 @@ public class BossController : MonoBehaviour
         } else {
             rb.velocity = new Vector2(0,0);
         }
-        print(System.Math.Round(Timer, 0, System.MidpointRounding.AwayFromZero));
-        print(System.Math.Round(Timer, 0, System.MidpointRounding.AwayFromZero) % 20);
-        if (System.Math.Round(Timer, 0, System.MidpointRounding.AwayFromZero) % 20 == 0){
+        if (System.Math.Round(Timer, 2, System.MidpointRounding.AwayFromZero) % 20 == 0){
             var rnd = new System.Random();
             int randbool = rnd.Next(0, 2);
             // 0 --> Spitting
