@@ -28,7 +28,7 @@ public class RangedEnemyController : MonoBehaviour
     {
         if (System.Math.Abs(Vector3.Distance(transform.position, player.transform.position)) < 4){
             Vector3 lookDirection = (player.transform.position - transform.position).normalized;
-            transform.Translate(-lookDirection * speed * Time.deltaTime);
+            transform.Translate(lookDirection * speed * Time.deltaTime);
         }
         if (spawnTimer < fireRate){
             spawnTimer += Time.deltaTime; 

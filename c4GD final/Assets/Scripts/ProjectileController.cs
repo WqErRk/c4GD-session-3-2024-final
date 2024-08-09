@@ -13,7 +13,7 @@ public class ProjectileController : MonoBehaviour
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         Vector3 rotation = player.transform.position - transform.position;
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, -rot);
+        transform.rotation = Quaternion.Euler(0, 0, rot);
         
     }
 
